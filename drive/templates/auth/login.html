@@ -1,10 +1,10 @@
 {% extends "auth/base.html" %}
 
 {% block auth_content %}
-<h1 class="h2 text-center">Log in to your account</h1>
+<h1 data-translate="login_title" class="h2 text-center">Log in to your account</h1>
 <form method="post">
   <div class="mb-3">
-    <label for="login-username" class="form-label">Username</label>
+    <label data-translate="username" for="login-username" class="form-label">Username</label>
     <div class="position-relative">
       <input type="text" class="form-control iconed-input" id="login-username">
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="login-password" class="form-label">Password</label>
+    <label data-translate="password" for="login-password" class="form-label">Password</label>
     <div class="position-relative">
       <input type="password" class="form-control iconed-input" id="login-password">
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
@@ -39,10 +39,14 @@
         <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
         <path d="M15 19l2 2l4 -4"></path>
       </svg>
-      <span>Log in</span>
+      <span data-translate="login_btn">Log in</span>
     </button>
   </div>
 </form>
-<p class="mb-0 mt-3">Don't have an account yet? Go to the <a class="text-decoration-none"
-    href="{{ url_for('auth.signup') }}">signup page</a>.</p>
+<p class="mb-0 mt-3">
+  <span data-translate="login_redirect">Don't have an account yet?</span>
+  <a data-translate="login_redirect_url" class="text-decoration-none" href="{{ url_for('auth.signup') }}">
+    Create an account now!
+  </a>
+</p>
 {% endblock %}

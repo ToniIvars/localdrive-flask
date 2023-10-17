@@ -23,26 +23,25 @@
             <path d="M12 20l4 -9l4 9"></path>
             <path d="M19.1 18h-6.2"></path>
           </svg>
-          <span class="d-none d-sm-inline">Language</span>
+          <span data-translate="lang" class="d-none d-sm-inline">Language</span>
         </a>
-        <ul style="min-width: 3rem;" class="dropdown-menu">
-          <li><a style="width: fit-content;" class="dropdown-item d-flex align-items-center gap-2" href="#">
+        <ul style="min-width: fit-content;" class="dropdown-menu">
+          <li>
+            <button class="dropdown-item d-flex align-items-center gap-2" data-lang="es">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
-                <mask id="a">
-                  <circle cx="256" cy="256" r="256" fill="#fff" />
-                </mask>
+                <mask id="a"><circle cx="256" cy="256" r="256" fill="#fff" /></mask>
                 <g mask="url(#a)">
                   <path fill="#d80027" d="M0 0h512v128l-39.8 130.3L512 384v128H0V384l37.8-124L0 128z" />
                   <path fill="#ffda44" d="M0 128h512v256H0z" />
                 </g>
               </svg>
-              <span>ESP</span>
-            </a></li>
-          <li><a style="width: fit-content;" class="dropdown-item d-flex align-items-center gap-2" href="#">
+              <span>ES</span>
+            </button>
+          </li>
+          <li>
+            <button class="dropdown-item d-flex align-items-center gap-2" data-lang="en">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
-                <mask id="a">
-                  <circle cx="256" cy="256" r="256" fill="#fff" />
-                </mask>
+                <mask id="a"><circle cx="256" cy="256" r="256" fill="#fff" /></mask>
                 <g mask="url(#a)">
                   <path fill="#eee"
                     d="m0 0 8 22-8 23v23l32 54-32 54v32l32 48-32 48v32l32 54-32 54v68l22-8 23 8h23l54-32 54 32h32l48-32 48 32h32l54-32 54 32h68l-8-22 8-23v-23l-32-54 32-54v-32l-32-48 32-48v-32l-32-54 32-54V0l-22 8-23-8h-23l-54 32-54-32h-32l-48 32-48-32h-32l-54 32L68 0H0z" />
@@ -53,7 +52,8 @@
                 </g>
               </svg>
               <span>EN</span>
-            </a></li>
+            </button>
+          </li>
         </ul>
       </li>
       <li class="nav-item">
@@ -65,7 +65,7 @@
             <path d="M9 12h12l-3 -3"></path>
             <path d="M18 15l3 -3"></path>
           </svg>
-          <span class="d-none d-sm-inline">Logout</span>
+          <span data-translate="logout" class="d-none d-sm-inline">Logout</span>
         </a>
       </li>
     </ul>

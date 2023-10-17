@@ -1,10 +1,10 @@
 {% extends "auth/base.html" %}
 
 {% block auth_content %}
-<h1 class="h2 text-center">Create a new account</h1>
+<h1 data-translate="signup_title" class="h2 text-center">Create a new account</h1>
 <form method="post">
   <div class="mb-3">
-    <label for="signup-username" class="form-label">Username</label>
+    <label data-translate="username" for="signup-username" class="form-label">Username</label>
     <div class="position-relative">
       <input type="text" class="form-control iconed-input" id="signup-username">
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="signup-password" class="form-label">Password</label>
+    <label data-translate="password" for="signup-password" class="form-label">Password</label>
     <div class="position-relative">
       <input type="password" class="form-control iconed-input" id="signup-password">
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="signup-repeat-password" class="form-label">Repeat password</label>
+    <label data-translate="repeat_password" for="signup-repeat-password" class="form-label">Repeat password</label>
     <div class="position-relative">
       <input type="password" class="form-control iconed-input" id="signup-repeat-password">
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
@@ -56,10 +56,14 @@
         <path d="M19 16v6"></path>
         <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
       </svg>
-      <span>Sign up</span>
+      <span data-translate="signup_btn">Sign up</span>
     </button>
   </div>
 </form>
-<p class="mb-0 mt-3">Already have an account? Go to the <a class="text-decoration-none"
-    href="{{ url_for('auth.login') }}">login page</a>.</p>
+<p class="mb-0 mt-3">
+  <span data-translate="signup_redirect">Already have an account?</span>
+  <a data-translate="signup_redirect_url" class="text-decoration-none" href="{{ url_for('auth.login') }}">
+    Log in then!
+  </a>
+</p>
 {% endblock %}
