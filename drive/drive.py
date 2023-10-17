@@ -1,11 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 drive = Blueprint('drive', __name__)
 
 @drive.route('/')
 def index():
-    return 'Index'
-
-@drive.route('/profile')
-def profile():
-    return 'Profile'
+    return render_template('drive/index.html')

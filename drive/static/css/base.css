@@ -1,0 +1,40 @@
+.drive-element {
+  width: 128px;
+  transition: background-color 200ms ease-in-out;
+}
+
+.drive-menu {
+  opacity: 0;
+  background-color: var(--bs-secondary-bg);
+  transition: opacity 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+.drive-element:hover {
+  background-color: var(--bs-secondary-bg);
+}
+
+.drive-element:hover .drive-menu {
+  opacity: 1;
+}
+
+.drive-menu:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+.auth-container {
+  width: min(600px, 90%);
+}
+
+.auth-container .auth-cloud {
+  width: calc(2.5rem + 1.5vw);
+}
+
+@media (min-width: 1200px) {
+  .auth-container .auth-cloud {
+    width: 3.75rem;
+  }
+}
+
+.iconed-input {
+  padding-left: 2rem !important;
+}

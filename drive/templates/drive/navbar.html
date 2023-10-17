@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand bg-body-tertiary px-sm-2 py-1 align-items-center">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light d-flex gap-2 align-items-center" href="{{ url_for('drive.index') }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M10.04 4.305c2.195 -.667 4.615 -.224 6.36 1.176c1.386 1.108 2.188 2.686 2.252 4.34l.003 .212l.091 .003c2.3 .107 4.143 1.961 4.25 4.27l.004 .211c0 2.407 -1.885 4.372 -4.255 4.482l-.21 .005h-11.878l-.222 -.008c-2.94 -.11 -5.317 -2.399 -5.43 -5.263l-.005 -.216c0 -2.747 2.08 -5.01 4.784 -5.417l.114 -.016l.07 -.181c.663 -1.62 2.056 -2.906 3.829 -3.518l.244 -.08z"
+          stroke-width="0" fill="currentColor"></path>
+      </svg>
+      <span class="fs-2">Localdrive</span>
+    </a>
+    <ul class="navbar-nav d-flex gap-2 justify-content-end w-100">
+      <li class="nav-item dropdown">
+        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 5h7"></path>
+            <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+            <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
+            <path d="M12 20l4 -9l4 9"></path>
+            <path d="M19.1 18h-6.2"></path>
+          </svg>
+          <span class="d-none d-sm-inline">Language</span>
+        </a>
+        <ul style="min-width: 3rem;" class="dropdown-menu">
+          <li><a style="width: fit-content;" class="dropdown-item d-flex align-items-center gap-2" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                <mask id="a">
+                  <circle cx="256" cy="256" r="256" fill="#fff" />
+                </mask>
+                <g mask="url(#a)">
+                  <path fill="#d80027" d="M0 0h512v128l-39.8 130.3L512 384v128H0V384l37.8-124L0 128z" />
+                  <path fill="#ffda44" d="M0 128h512v256H0z" />
+                </g>
+              </svg>
+              <span>ESP</span>
+            </a></li>
+          <li><a style="width: fit-content;" class="dropdown-item d-flex align-items-center gap-2" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                <mask id="a">
+                  <circle cx="256" cy="256" r="256" fill="#fff" />
+                </mask>
+                <g mask="url(#a)">
+                  <path fill="#eee"
+                    d="m0 0 8 22-8 23v23l32 54-32 54v32l32 48-32 48v32l32 54-32 54v68l22-8 23 8h23l54-32 54 32h32l48-32 48 32h32l54-32 54 32h68l-8-22 8-23v-23l-32-54 32-54v-32l-32-48 32-48v-32l-32-54 32-54V0l-22 8-23-8h-23l-54 32-54-32h-32l-48 32-48-32h-32l-54 32L68 0H0z" />
+                  <path fill="#0052b4"
+                    d="M336 0v108L444 0Zm176 68L404 176h108zM0 176h108L0 68ZM68 0l108 108V0Zm108 512V404L68 512ZM0 444l108-108H0Zm512-108H404l108 108Zm-68 176L336 404v108z" />
+                  <path fill="#d80027"
+                    d="M0 0v45l131 131h45L0 0zm208 0v208H0v96h208v208h96V304h208v-96H304V0h-96zm259 0L336 131v45L512 0h-45zM176 336 0 512h45l131-131v-45zm160 0 176 176v-45L381 336h-45z" />
+                </g>
+              </svg>
+              <span>EN</span>
+            </a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active d-flex gap-1 align-items-center" href="{{ url_for('auth.logout') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+            <path d="M9 12h12l-3 -3"></path>
+            <path d="M18 15l3 -3"></path>
+          </svg>
+          <span class="d-none d-sm-inline">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
