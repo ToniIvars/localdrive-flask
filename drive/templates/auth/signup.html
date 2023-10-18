@@ -2,11 +2,11 @@
 
 {% block auth_content %}
 <h1 data-translate="signup_title" class="h2 text-center">Create a new account</h1>
-<form method="post">
+<form method="post" action="">
   <div class="mb-3">
     <label data-translate="username" for="signup-username" class="form-label">Username</label>
     <div class="position-relative">
-      <input type="text" class="form-control iconed-input" id="signup-username">
+      <input type="text" class="form-control iconed-input" id="signup-username" name="username" required>
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
         stroke-linecap="round" stroke-linejoin="round">
@@ -19,7 +19,7 @@
   <div class="mb-3">
     <label data-translate="password" for="signup-password" class="form-label">Password</label>
     <div class="position-relative">
-      <input type="password" class="form-control iconed-input" id="signup-password">
+      <input type="password" class="form-control iconed-input" id="signup-password" name="password" required>
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
         stroke-linecap="round" stroke-linejoin="round">
@@ -33,7 +33,7 @@
   <div class="mb-3">
     <label data-translate="repeat_password" for="signup-repeat-password" class="form-label">Repeat password</label>
     <div class="position-relative">
-      <input type="password" class="form-control iconed-input" id="signup-repeat-password">
+      <input type="password" class="form-control iconed-input" id="signup-repeat-password" name="repeat-password" required>
       <svg xmlns="http://www.w3.org/2000/svg" style="left: 0.25rem" class="position-absolute top-50 translate-middle-y"
         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
         stroke-linecap="round" stroke-linejoin="round">

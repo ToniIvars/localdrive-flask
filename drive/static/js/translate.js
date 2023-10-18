@@ -5,6 +5,7 @@ const translations = {
     username: "Username",
     password: "Password",
     repeat_password: "Repeat password",
+    remember: "Remember me",
     login_title: "Log in to your account",
     login_btn: "Log in",
     login_redirect: "Don't have an account yet?",
@@ -13,6 +14,10 @@ const translations = {
     signup_btn: "Sign up",
     signup_redirect: "Already have an account?",
     signup_redirect_url: "Log in then!",
+    alert_bad_login: "Wrong login details. Check them and try again",
+    alert_username_in_use: "Username already in use",
+    alert_password_mismatch: "Passwords do not match",
+    notification_login_success: "You have logged in successfully!"
   },
   es: {
     lang: "Idioma",
@@ -20,6 +25,7 @@ const translations = {
     username: "Usuario",
     password: "Contraseña",
     repeat_password: "Repetir contraseña",
+    remember: "Recuérdame",
     login_title: "Inicia sesión en tu cuenta",
     login_btn: "Inicar sesión",
     login_redirect: "¿No tienes una cuenta todavía?",
@@ -28,6 +34,10 @@ const translations = {
     signup_btn: "Registrarse",
     signup_redirect: "¿Ya tienes una cuenta?",
     signup_redirect_url: "Inicia sesión entonces!",
+    alert_bad_login: "Datos de inicio de sesión incorrectos. Compruébalos e inténtalo de nuevo",
+    alert_username_in_use: "El nombre de usuario ya está en uso",
+    alert_password_mismatch: "Las contraseñas introducidas son diferentes",
+    notification_login_success: "Has iniciado sesión correctamente"
   }
 }
 
