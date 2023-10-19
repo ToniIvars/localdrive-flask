@@ -1,16 +1,12 @@
-from pathlib import Path
-
-from dotenv import dotenv_values
 from flask import Flask
 from flask_login import LoginManager
 
+from .config import CONFIG
 from .models import db, User
 
 def create_app():
     app = Flask(__name__)
-
-    app.config['SECRET_KEY'] = dotenv_values(Path(__file__).parent / '.env').get('SECRET_KEY', 'development')
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config.update(CONFIG)
 
     db.init_app(app)
     with app.app_context():
