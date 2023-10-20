@@ -1,12 +1,12 @@
 from flask import Flask
 from flask_login import LoginManager
 
-from .config import CONFIG
+from .config import config
 from .models import db, User
 
 def create_app():
     app = Flask(__name__)
-    app.config.update(CONFIG)
+    app.config.update(config.to_flask_config())
 
     db.init_app(app)
     with app.app_context():
