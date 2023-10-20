@@ -17,7 +17,8 @@ const translations = {
     alert_bad_login: "Wrong login details",
     alert_username_in_use: "Username already in use",
     alert_password_mismatch: "Passwords do not match",
-    notification_login_success: "You have logged in successfully!"
+    notification_login_success: "You have logged in successfully!",
+    notification_signup_success: "You have signed up successfully!"
   },
   es: {
     lang: "Idioma",
@@ -29,15 +30,16 @@ const translations = {
     login_title: "Inicia sesión en tu cuenta",
     login_btn: "Inicar sesión",
     login_redirect: "¿No tienes una cuenta todavía?",
-    login_redirect_url: "Regístrate ahora!",
+    login_redirect_url: "¡Regístrate ahora!",
     signup_title: "Crea una nueva cuenta",
     signup_btn: "Registrarse",
     signup_redirect: "¿Ya tienes una cuenta?",
-    signup_redirect_url: "Inicia sesión entonces!",
+    signup_redirect_url: "¡Inicia sesión entonces!",
     alert_bad_login: "Datos de inicio de sesión incorrectos",
     alert_username_in_use: "El nombre de usuario ya está en uso",
     alert_password_mismatch: "Las contraseñas introducidas son diferentes",
-    notification_login_success: "Has iniciado sesión correctamente"
+    notification_login_success: "Has iniciado sesión correctamente!",
+    notification_signup_success: "Te has registrado correctamente!"
   }
 }
 
