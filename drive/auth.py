@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, logout_user
+from uuid import uuid4
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from .file_handling import create_user_directory
@@ -43,11 +44,11 @@ def signup():
         flash('alert_password_mismatch', 'danger')
         return render_template('auth/signup.html', username=username, password=password)
     
-    new_user = User(username=username, password=generate_password_hash(password))
+    new_user = User(username=username, password=generate_password_hash(password), uuid=uuid4())
     db.session.add(new_user)
     db.session.commit()
     
-    create_user_directory(username)
+    create_user_directory(new_user.uuid)
 
     login_user(new_user, remember=True)
     flash('notification_signup_success', 'notification-success')
