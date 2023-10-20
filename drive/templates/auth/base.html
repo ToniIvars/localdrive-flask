@@ -2,6 +2,21 @@
 
 {% block content %}
 <div class="container auth-container border rounded-3 mt-5 pt-2 pb-3 px-2 px-sm-4">
+  {% for category, trans_key in get_flashed_messages(with_categories=true, category_filter=("danger")) %}
+  <div class="alert alert-{{ category }} alert-dismissible d-flex align-items-center column-gap-2 fade show mt-2"
+    role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+      <path d="M12 8v4"></path>
+      <path d="M12 16h.01"></path>
+    </svg>
+    <span data-translate="{{ trans_key }}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+
   <p class="d-flex align-items-center justify-content-center gap-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="auth-cloud" viewBox="0 0 24 24" stroke-width="2"
       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -12,6 +27,7 @@
     </svg>
     <span class="fs-1">Localdrive</span>
   </p>
+  
   {% block auth_content %}
   {% endblock %}
 </div>

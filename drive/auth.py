@@ -36,11 +36,11 @@ def signup():
     user = User.query.filter_by(username=username).first()
     if user:
         flash('alert_username_in_use', 'danger')
-        return redirect(url_for('auth.signup'))
+        return render_template('auth/signup.html', password=password, repeat_password=repeat_password)
     
     if password != repeat_password:
         flash('alert_password_mismatch', 'danger')
-        return redirect(url_for('auth.signup'))
+        return render_template('auth/signup.html', username=username, password=password)
     
     new_user = User(username=username, password=generate_password_hash(password))
     db.session.add(new_user)
@@ -49,7 +49,6 @@ def signup():
     login_user(user, remember=True)
     flash('notification_login_success', 'notification-success')
     return redirect(url_for('drive.index'))
-    
 
 @auth.route('/logout')
 @login_required

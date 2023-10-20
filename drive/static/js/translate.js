@@ -14,7 +14,7 @@ const translations = {
     signup_btn: "Sign up",
     signup_redirect: "Already have an account?",
     signup_redirect_url: "Log in then!",
-    alert_bad_login: "Wrong login details. Check them and try again",
+    alert_bad_login: "Wrong login details",
     alert_username_in_use: "Username already in use",
     alert_password_mismatch: "Passwords do not match",
     notification_login_success: "You have logged in successfully!"
@@ -34,7 +34,7 @@ const translations = {
     signup_btn: "Registrarse",
     signup_redirect: "¿Ya tienes una cuenta?",
     signup_redirect_url: "Inicia sesión entonces!",
-    alert_bad_login: "Datos de inicio de sesión incorrectos. Compruébalos e inténtalo de nuevo",
+    alert_bad_login: "Datos de inicio de sesión incorrectos",
     alert_username_in_use: "El nombre de usuario ya está en uso",
     alert_password_mismatch: "Las contraseñas introducidas son diferentes",
     notification_login_success: "Has iniciado sesión correctamente"
