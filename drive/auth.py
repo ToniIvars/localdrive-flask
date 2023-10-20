@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from .file_handling import create_user_directory
 from .models import db, User
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
@@ -46,8 +47,10 @@ def signup():
     db.session.add(new_user)
     db.session.commit()
     
-    login_user(user, remember=True)
-    flash('notification_login_success', 'notification-success')
+    create_user_directory(username)
+
+    login_user(new_user, remember=True)
+    flash('notification_signup_success', 'notification-success')
     return redirect(url_for('drive.index'))
 
 @auth.route('/logout')
