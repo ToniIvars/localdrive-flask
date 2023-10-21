@@ -2,6 +2,8 @@ const translations = {
   en: {
     lang: "Language",
     logout: "Logout",
+    drive_shared: "Shared",
+    drive_mydrive: "My drive",
     username: "Username",
     password: "Password",
     repeat_password: "Repeat password",
@@ -23,6 +25,8 @@ const translations = {
   es: {
     lang: "Idioma",
     logout: "Cerrar sesión",
+    drive_shared: "Compartido",
+    drive_mydrive: "Mi unidad",
     username: "Usuario",
     password: "Contraseña",
     repeat_password: "Repetir contraseña",
