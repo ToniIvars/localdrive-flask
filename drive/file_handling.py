@@ -11,7 +11,7 @@ def list_dir(uuid:  str, path: str) -> None:
     directory = Path(config.localdrive_storage_path) / uuid / path
 
     if not directory.exists():
-        return False
+        return
 
     content = []
     for item in directory.iterdir():

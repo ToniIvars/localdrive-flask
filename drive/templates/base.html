@@ -12,8 +12,11 @@
 </head>
 
 <body data-bs-theme="dark">
-  {% for category, trans_key in get_flashed_messages(with_categories=true, category_filter=("notification-success")) %}
-  <div style="width: fit-content !important;" class="toast text-bg-{{ category.split('-')[1] }} position-absolute bottom-0 end-0 m-2 mb-3 m-sm-3" role="alert" aria-live="assertive" aria-atomic="true">
+  {% for category, trans_key in get_flashed_messages(with_categories=true, category_filter=("notification-success",
+  "notification-danger")) %}
+  <div style="width: fit-content !important;"
+    class="toast text-bg-{{ category.split('-')[1] }} position-absolute bottom-0 end-0 m-2 mb-3 m-sm-3" role="alert"
+    aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
       <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -26,10 +29,17 @@
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body d-flex align-items-center column-gap-1 pe-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        {% if category == 'notification-success' %}
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
         <path d="M9 12l2 2l4 -4"></path>
+        {% elif category == 'notification-danger' %}
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+        <path d="M10 10l4 4m0 -4l-4 4"></path>
+        {% endif %}
       </svg>
       <span data-translate="{{ trans_key }}"></span>
     </div>
