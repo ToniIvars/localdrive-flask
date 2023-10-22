@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block content %} {% include "drive/navbar.html" %}
+{% block content %}
+{% include "drive/navbar.html" %}
+{% include "drive/modals.html" %}
+
 <div class="container pt-3">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb d-flex align-items-center">
@@ -16,59 +19,94 @@
           </svg>
         </a>
       </li>
-      <li {% if path %} class="breadcrumb-item" {% else %} class="breadcrumb-item active" aria-current="page" {% endif %}>
+      <li {% if path %} class="breadcrumb-item" {% else %} class="breadcrumb-item active" aria-current="page" {% endif
+        %}>
         {% if path %}
-          <a class="text-decoration-none" href="{{ url_for('drive.storage', name=url_name) }}" data-translate="{{ translate }}"></a>
+        <a class="text-decoration-none" href="{{ url_for('drive.storage', name=url_name) }}"
+          data-translate="{{ translate }}"></a>
         {% else %}
-          <span data-translate="{{ translate }}"></span>
+        <span data-translate="{{ translate }}"></span>
         {% endif %}
       </li>
       {% if path %}
       {% for p in path[:-1] %}
-      <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ url_for('drive.storage', name=url_name, path='/'.join(path[:loop.index])) }}">{{ p }}</a></li>
+      <li class="breadcrumb-item"><a class="text-decoration-none"
+          href="{{ url_for('drive.storage', name=url_name, path='/'.join(path[:loop.index])) }}">{{ p }}</a></li>
       {% endfor %}
       <li class="breadcrumb-item active" aria-current="page">{{ path[-1] }}</li>
       {% endif %}
     </ol>
   </nav>
-  <section
-    class="container px-0 d-flex flex-wrap justify-content-center justify-content-sm-start column-gap-5 row-gap-2">
-    {% for c in content %}
-    <div class="drive-element {{ c.type }} container px-0 mx-0 pb-2 position-relative d-flex align-items-center flex-column rounded-3">
-      {% if c.type == 'folder' %}
-      <a href="{{ url_for('drive.storage', name=url_name, path='/'.join(path + [c.name])) }}" class="text-reset text-decoration-none text-center">
+  <main>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h1>{% if path %} {{ path[-1] }} {% else %} <span data-translate="{{ translate }}"></span> {% endif %}</h1>
+      <div class="d-flex column-gap-3">
+        <button type="button" class="btn btn-success d-flex align-items-center column-gap-1" data-bs-toggle="modal"
+          data-bs-target="#new-folder-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
+            <path d="M16 19h6"></path>
+            <path d="M19 16v6"></path>
+          </svg>
+          <span data-translate="new_folder_btn" class="d-none d-md-inline">Add folder</span>
+        </button>
+        <button type="button" class="btn btn-success d-flex align-items-center column-gap-1" data-bs-toggle="modal"
+          data-bs-target="#upload-file-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+            <path d="M12 11v6"></path>
+            <path d="M9.5 13.5l2.5 -2.5l2.5 2.5"></path>
+          </svg>
+          <span data-translate="upload_file_btn" class="d-none d-md-inline">Upload files</span>
+        </button>
+      </div>
+    </div>
+    <section
+      class="container px-0 d-flex flex-wrap justify-content-center justify-content-sm-start column-gap-5 row-gap-2">
+      {% for c in content %}
+      <div
+        class="drive-element {{ c.type }} container px-0 mx-0 pb-2 position-relative d-flex align-items-center flex-column rounded-3">
+        {% if c.type == 'folder' %}
+        <a href="{{ url_for('drive.storage', name=url_name, path='/'.join(path + [c.name])) }}"
+          class="text-reset text-decoration-none text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M9 3a1 1 0 0 1 .608 .206l.1 .087l2.706 2.707h6.586a3 3 0 0 1 2.995 2.824l.005 .176v8a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-11a3 3 0 0 1 2.824 -2.995l.176 -.005h4z"
+              stroke-width="0" fill="currentColor"></path>
+          </svg>
+          <span>{{ c.name }}</span>
+        </a>
+        {% else %}
         <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
           stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
           <path
-            d="M9 3a1 1 0 0 1 .608 .206l.1 .087l2.706 2.707h6.586a3 3 0 0 1 2.995 2.824l.005 .176v8a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-11a3 3 0 0 1 2.824 -2.995l.176 -.005h4z"
+            d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005h5z"
             stroke-width="0" fill="currentColor"></path>
+          <path d="M19 7h-4l-.001 -4.001z" stroke-width="0" fill="currentColor"></path>
         </svg>
         <span>{{ c.name }}</span>
-      </a>
-      {% else %}
-      <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
-        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path
-          d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005h5z"
-          stroke-width="0" fill="currentColor"></path>
-        <path d="M19 7h-4l-.001 -4.001z" stroke-width="0" fill="currentColor"></path>
-      </svg>
-      <span>{{ c.name }}</span>
-      {% endif %}
-      <a class="position-absolute top-0 start-100 translate-middle btn border border-0 m-0 p-0" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="drive-menu rounded-circle p-1" width="36" height="36"
-          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4"></path>
-          <path d="M12 13l0 9"></path>
-          <path d="M9 19l3 3l3 -3"></path>
-        </svg>
-      </a>
-    </div>
-    {% endfor %}
-  </section>
+        {% endif %}
+        <a class="position-absolute top-0 start-100 translate-middle btn border border-0 m-0 p-0" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="drive-menu rounded-circle p-1" width="36" height="36"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4"></path>
+            <path d="M12 13l0 9"></path>
+            <path d="M9 19l3 3l3 -3"></path>
+          </svg>
+        </a>
+      </div>
+      {% endfor %}
+    </section>
+  </main>
 </div>
 {% endblock %}

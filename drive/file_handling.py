@@ -7,8 +7,8 @@ def create_user_directory(uuid: UUID) -> None:
     path_to_create = Path(config.localdrive_storage_path) / str(uuid)
     path_to_create.mkdir(exist_ok=True)
 
-def list_dir(uuid:  str, path: str) -> None:
-    directory = Path(config.localdrive_storage_path) / uuid / path
+def list_dir(base_path:  str, path: str) -> None:
+    directory = Path(config.localdrive_storage_path) / base_path / path
 
     if not directory.exists():
         return
@@ -19,5 +19,11 @@ def list_dir(uuid:  str, path: str) -> None:
             'name': item.name,
             'type': 'folder' if item.is_dir() else 'file',
         })
-
+    
+    content.sort(key=lambda d: (['folder', 'file'].index(d['type']), d['name']))
     return content
+
+def save_file(base_path: str, f, name: str, path: str) -> None:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    file_path = directory / name
+    f.save(str(file_path))
