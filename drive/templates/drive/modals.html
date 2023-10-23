@@ -4,7 +4,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5 d-flex column-gap-1 align-items-center" id="upload-file-modal-title">
+        <h1 class="modal-title fs-5 d-flex column-gap-2 align-items-center" id="upload-file-modal-title">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -36,6 +36,49 @@
                 <path d="M9.5 13.5l2.5 -2.5l2.5 2.5"></path>
               </svg>
               <span data-translate="upload_file_btn">Upload file</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- New folder modal -->
+<div class="modal fade" id="new-folder-modal" tabindex="-1" aria-labelledby="new-folder-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 d-flex column-gap-2 align-items-center" id="new-folder-modal-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
+            <path d="M16 19h6"></path>
+            <path d="M19 16v6"></path>
+          </svg>
+          <span data-translate="new_folder_title">Create a new folder</span>
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="modal" value="folder">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="folder-name" class="form-label" data-translate="new_folder_desc"></label>
+            <input class="form-control" id="folder-name" name="folder-name" type="text" required>
+          </div>
+          <div class="d-grid gap-2 d-sm-block">
+            <button type="submit"
+              class="ms-sm-auto btn btn-success d-flex align-items-center justify-content-center column-gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"></path>
+                <path d="M16 19h6"></path>
+                <path d="M19 16v6"></path>
+              </svg>
+              <span data-translate="new_folder_btn">New folder</span>
             </button>
           </div>
         </div>

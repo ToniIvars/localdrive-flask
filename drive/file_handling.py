@@ -27,3 +27,12 @@ def save_file(base_path: str, f, name: str, path: str) -> None:
     directory = Path(config.localdrive_storage_path) / base_path / path
     file_path = directory / name
     f.save(str(file_path))
+
+def create_dir(base_path: str, path: str, name: str) -> bool:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    dir_path = directory / name
+    if dir_path.exists():
+        return False
+    
+    dir_path.mkdir()
+    return True

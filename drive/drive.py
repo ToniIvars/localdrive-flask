@@ -41,5 +41,14 @@ def storage_post(name, path):
             file_handling.save_file(base_path, f, filename, path)
 
         flash('drive_file_uploaded', 'notification-success')
+
+    elif request.form.get('modal') == 'folder':
+        folder_name = request.form.get('folder-name')
+        res = file_handling.create_dir(base_path, path, folder_name)
+
+        flash(
+            'drive_folder_created' if res else 'drive_folder_exists',
+            'notification-success' if res else 'notification-danger'
+        )
     
     return redirect(request.url)
