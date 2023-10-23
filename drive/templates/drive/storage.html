@@ -81,7 +81,7 @@
               d="M9 3a1 1 0 0 1 .608 .206l.1 .087l2.706 2.707h6.586a3 3 0 0 1 2.995 2.824l.005 .176v8a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-11a3 3 0 0 1 2.824 -2.995l.176 -.005h4z"
               stroke-width="0" fill="currentColor"></path>
           </svg>
-          <span>{{ c.name }}</span>
+          <span class="text-break px-2">{{ c.name }}</span>
         </a>
         {% else %}
         <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
@@ -92,7 +92,7 @@
             stroke-width="0" fill="currentColor"></path>
           <path d="M19 7h-4l-.001 -4.001z" stroke-width="0" fill="currentColor"></path>
         </svg>
-        <span>{{ c.name }}</span>
+        <span class="text-break px-2">{{ c.name }}</span>
         {% endif %}
         <a class="position-absolute top-0 start-100 translate-middle btn border border-0 m-0 p-0" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" class="drive-menu rounded-circle p-1" width="36" height="36"
