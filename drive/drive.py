@@ -77,37 +77,3 @@ def modify(modification, name, path):
 
     flash(f'drive_item_{modification}', 'notification-success')
     return redirect(url_for('drive.storage', name=name, path=path))
-
-# @drive.route('/delete/<name>/', defaults={'path': ''}, methods=['POST'])
-# @drive.route('/delete/<name>/<path:path>', methods=['POST'])
-# @login_required
-# def delete(name, path):
-#     if name not in ('shared', 'my-drive'):
-#         flash('drive_path_not_found', 'notification-danger')
-#         return redirect(url_for('drive.index'))
-
-#     base_path = 'shared' if name == 'shared' else str(current_user.uuid)
-#     item_name = request.form.get('item-name')
-
-#     file_handling.delete(base_path, path, item_name)
-
-#     flash('drive_item_delete', 'notification-success')
-#     return redirect(url_for('drive.storage', name=name, path=path))
-
-# @drive.route('/rename/<name>/', defaults={'path': ''}, methods=['POST'])
-# @drive.route('/rename/<name>/<path:path>', methods=['POST'])
-# @login_required
-# def rename(name, path):
-#     if name not in ('shared', 'my-drive'):
-#         flash('drive_path_not_found', 'notification-danger')
-#         return redirect(url_for('drive.index'))
-
-#     base_path = 'shared' if name == 'shared' else str(current_user.uuid)
-    
-#     item_name = request.form.get('item-name')
-#     new_name = request.form.get('new-name')
-    
-#     file_handling.rename(base_path, path, item_name, new_name)
-
-#     flash('drive_item_rename', 'notification-success')
-#     return redirect(url_for('drive.storage', name=name, path=path))
