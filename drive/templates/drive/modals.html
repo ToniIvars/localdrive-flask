@@ -86,3 +86,97 @@
     </div>
   </div>
 </div>
+
+<!-- Delete modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 d-flex column-gap-2 align-items-center" id="delete-modal-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 7l16 0"></path>
+            <path d="M10 11l0 6"></path>
+            <path d="M14 11l0 6"></path>
+            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+          </svg>
+          <span data-translate="delete_item_title">Delete item</span>
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{{ url_for('drive.modify', modification='delete', name=url_name, path='/'.join(path)) }}">
+          <input type="hidden" name="item-name" value="">
+          <p>
+            <span data-translate="delete_item_desc"></span>
+            <strong data-replace="item-name"></strong>?
+          </p>
+          <div class="d-grid gap-2 d-sm-flex flex-row-reverse">
+            <button type="submit"
+              class="btn btn-outline-danger d-flex align-items-center justify-content-center column-gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 7l16 0"></path>
+                <path d="M10 11l0 6"></path>
+                <path d="M14 11l0 6"></path>
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+              </svg>
+              <span data-translate="delete_item_btn">Delete</span>
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              data-translate="cancel_btn"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Rename modal -->
+<div class="modal fade" id="rename-modal" tabindex="-1" aria-labelledby="rename-modal-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 d-flex column-gap-2 align-items-center" id="rename-modal-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path>
+            <path d="M13.5 6.5l4 4"></path>
+          </svg>
+          <span data-translate="rename_item_title">Rename item</span>
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{{ url_for('drive.modify', modification='rename', name=url_name, path='/'.join(path)) }}">
+          <input type="hidden" name="item-name" value="">
+          <div class="mb-3">
+            <label for="new-name" class="form-label">
+              <span data-translate="rename_item_desc"></span>
+              <strong data-replace="item-name"></strong>:
+            </label>
+            <input class="form-control" id="new-name" name="new-name" type="text" required>
+          </div>
+          <div class="d-grid gap-2 d-sm-flex flex-row-reverse">
+            <button type="submit" class="btn btn-warning d-flex align-items-center justify-content-center column-gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path>
+                <path d="M13.5 6.5l4 4"></path>
+              </svg>
+              <span data-translate="rename_item_btn">Rename</span>
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              data-translate="cancel_btn"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

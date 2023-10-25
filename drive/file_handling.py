@@ -1,4 +1,5 @@
 from pathlib import Path
+from shutil import rmtree
 from uuid import UUID
 
 from .config import config
@@ -36,3 +37,23 @@ def create_dir(base_path: str, path: str, name: str) -> bool:
     
     dir_path.mkdir()
     return True
+
+def delete(base_path: str, path: str, name: str) -> None:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    item_path = directory / name
+
+    if item_path.exists():
+        if item_path.is_dir():
+            rmtree(item_path)
+
+        else:
+            item_path.unlink()
+
+def rename(base_path: str, path: str, name: str, new_name: str) -> None:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    
+    old_path = directory / name
+    new_path = directory / new_name
+
+    if old_path.exists():
+        old_path.rename(new_path)
