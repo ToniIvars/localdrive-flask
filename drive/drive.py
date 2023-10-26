@@ -12,7 +12,7 @@ def index():
     return render_template('drive/index.html')
 
 @drive.route('/<name>/', defaults={'path': ''})
-@drive.route('/<name>/<path:path>')
+@drive.route('/<name>/<path:path>/')
 @login_required
 def storage(name, path):
     if name not in ('shared', 'my-drive'):
@@ -21,12 +21,16 @@ def storage(name, path):
 
     base_path = 'shared' if name == 'shared' else str(current_user.uuid)
     content = file_handling.list_dir(base_path, path)
+
+    if content is None:
+        flash('drive_path_not_found', 'notification-danger')
+        return redirect(url_for('drive.index'))
     
     path = [p for p in path.split('/') if p != '']
     return render_template('drive/storage.html', translate=f'drive_{name.replace("-", "")}', url_name=name, path=path, content=content)
 
 @drive.route('/<name>/', defaults={'path': ''}, methods=['POST'])
-@drive.route('/<name>/<path:path>', methods=['POST'])
+@drive.route('/<name>/<path:path>/', methods=['POST'])
 @login_required
 def storage_post(name, path):
     if name not in ('shared', 'my-drive'):
@@ -44,7 +48,6 @@ def storage_post(name, path):
 
     elif request.form.get('modal') == 'folder':
         folder_name = secure_filename(request.form.get('folder-name'))
-        print(f'{folder_name=}')
         res = file_handling.create_dir(base_path, path, folder_name)
 
         flash(
@@ -55,7 +58,7 @@ def storage_post(name, path):
     return redirect(request.url)
 
 @drive.route('/<modification>/<name>/', defaults={'path': ''}, methods=['POST'])
-@drive.route('/<modification>/<name>/<path:path>', methods=['POST'])
+@drive.route('/<modification>/<name>/<path:path>/', methods=['POST'])
 @login_required
 def modify(modification, name, path):
     if modification not in ('delete', 'rename'):
@@ -68,16 +71,32 @@ def modify(modification, name, path):
     base_path = 'shared' if name == 'shared' else str(current_user.uuid)
 
     if modification == 'delete':
-        item_name = secure_filename(request.form.get('item-name'))
+        item_name = request.form.get('item-name')
         res = file_handling.delete(base_path, path, item_name)
 
-    else:    
-        item_name = secure_filename(request.form.get('item-name'))
-        new_name = secure_filename(request.form.get('new-name'))
+    else:
+        item_name = request.form.get('item-name')
+        new_name = request.form.get('new-name')
         res = file_handling.rename(base_path, path, item_name, new_name)
 
     flash(
         f'drive_item_{modification}' if res else f'drive_item_{modification}_error',
         'notification-success' if res else 'notification-danger'
     )
+    return redirect(url_for('drive.storage', name=name, path=path))
+
+@drive.route('/duplicate/<name>/<path:path>/')
+@login_required
+def duplicate(name, path):
+    if name not in ('shared', 'my-drive'):
+        flash('drive_path_not_found', 'notification-danger')
+        return redirect(url_for('drive.index'))
+
+    base_path = 'shared' if name == 'shared' else str(current_user.uuid)
+    path = path.split('/')
+    path, item_name = '/'.join(path[:-1]), path[-1]
+
+    file_handling.duplicate(base_path, path, item_name)
+
+    flash('drive_item_duplication', 'notification-success')
     return redirect(url_for('drive.storage', name=name, path=path))

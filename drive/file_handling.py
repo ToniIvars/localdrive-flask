@@ -1,5 +1,5 @@
 from pathlib import Path
-from shutil import rmtree
+from shutil import rmtree, copy2, copytree
 from uuid import UUID
 
 from .config import config
@@ -64,3 +64,17 @@ def rename(base_path: str, path: str, name: str, new_name: str) -> bool:
     
     old_path.rename(new_path)
     return True
+
+def duplicate(base_path: str, path: str, name: str) -> None:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    item_name = directory / name
+
+    i = 1
+    while True:
+        duplicate_name = directory / f'{name} ({i})'
+        if not duplicate_name.exists():
+            copy_func = copytree if item_name.is_dir() else copy2
+            copy_func(item_name, duplicate_name)
+            return
+        
+        i += 1
