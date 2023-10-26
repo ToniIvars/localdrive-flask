@@ -17,9 +17,9 @@
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" enctype="multipart/form-data">
-        <input type="hidden" name="modal" value="upload">
-        <div class="modal-body">
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data">
+          <input type="hidden" name="modal" value="upload">
           <div class="mb-3">
             <label for="upload-file" class="form-label" data-translate="upload_file_desc"></label>
             <input class="form-control" id="upload-file" name="upload-file" type="file" multiple required>
@@ -38,8 +38,8 @@
               <span data-translate="upload_file_btn">Upload file</span>
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -61,9 +61,9 @@
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" enctype="multipart/form-data">
-        <input type="hidden" name="modal" value="folder">
-        <div class="modal-body">
+      <div class="modal-body">
+        <form method="post">
+          <input type="hidden" name="modal" value="folder">
           <div class="mb-3">
             <label for="folder-name" class="form-label" data-translate="new_folder_desc"></label>
             <input class="form-control" id="folder-name" name="folder-name" type="text" required>
@@ -81,8 +81,8 @@
               <span data-translate="new_folder_btn">New folder</span>
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -107,7 +107,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{ url_for('drive.modify', modification='delete', drive=drive, path='/'.join(path)) }}">
+        <form method="post" action="{{ url_for('drive.delete', drive=drive, path='/'.join(path)) }}">
           <input type="hidden" name="item-name" value="">
           <p>
             <span data-translate="delete_item_desc"></span>
@@ -153,7 +153,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{ url_for('drive.modify', modification='rename', drive=drive, path='/'.join(path)) }}">
+        <form method="post" action="{{ url_for('drive.rename', drive=drive, path='/'.join(path)) }}">
           <input type="hidden" name="item-name" value="">
           <div class="mb-3">
             <label for="new-name" class="form-label">

@@ -54,27 +54,35 @@ def storage_post(drive, path):
     
     return redirect(request.url)
 
-@drive.route('/<modification>/<drive>/', defaults={'path': ''}, methods=['POST'])
-@drive.route('/<modification>/<drive>/<path:path>/', methods=['POST'])
+@drive.route('/delete/<drive>/', defaults={'path': ''}, methods=['POST'])
+@drive.route('/delete/<drive>/<path:path>/', methods=['POST'])
 @login_required
 @check_drive
-def modify(modification, drive, path):
+def delete(drive, path):
     base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
 
-    if modification == 'delete':
-        item_name = request.form.get('item-name')
-        res = file_handling.delete(base_path, path, item_name)
-
-    elif modification == 'rename':
-        item_name = request.form.get('item-name')
-        new_name = request.form.get('new-name')
-        res = file_handling.rename(base_path, path, item_name, new_name)
-
-    else:
-        return redirect(url_for('drive.storage', drive=drive, path=path))
+    item_name = request.form.get('item-name')
+    res = file_handling.delete(base_path, path, item_name)
 
     flash(
-        f'drive_item_{modification}' if res else f'drive_item_{modification}_error',
+        'drive_item_delete' if res else 'drive_item_delete_error',
+        'notification-success' if res else 'notification-danger'
+    )
+    return redirect(url_for('drive.storage', drive=drive, path=path))
+
+@drive.route('/rename/<drive>/', defaults={'path': ''}, methods=['POST'])
+@drive.route('/rename/<drive>/<path:path>/', methods=['POST'])
+@login_required
+@check_drive
+def rename(drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
+
+    item_name = request.form.get('item-name')
+    new_name = request.form.get('new-name')
+    res = file_handling.rename(base_path, path, item_name, new_name)
+
+    flash(
+        'drive_item_rename' if res else 'drive_item_rename_error',
         'notification-success' if res else 'notification-danger'
     )
     return redirect(url_for('drive.storage', drive=drive, path=path))
