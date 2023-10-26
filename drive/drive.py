@@ -43,7 +43,8 @@ def storage_post(name, path):
         flash('drive_file_uploaded', 'notification-success')
 
     elif request.form.get('modal') == 'folder':
-        folder_name = request.form.get('folder-name')
+        folder_name = secure_filename(request.form.get('folder-name'))
+        print(f'{folder_name=}')
         res = file_handling.create_dir(base_path, path, folder_name)
 
         flash(
@@ -67,13 +68,16 @@ def modify(modification, name, path):
     base_path = 'shared' if name == 'shared' else str(current_user.uuid)
 
     if modification == 'delete':
-        item_name = request.form.get('item-name')
-        file_handling.delete(base_path, path, item_name)
+        item_name = secure_filename(request.form.get('item-name'))
+        res = file_handling.delete(base_path, path, item_name)
 
     else:    
-        item_name = request.form.get('item-name')
-        new_name = request.form.get('new-name')
-        file_handling.rename(base_path, path, item_name, new_name)
+        item_name = secure_filename(request.form.get('item-name'))
+        new_name = secure_filename(request.form.get('new-name'))
+        res = file_handling.rename(base_path, path, item_name, new_name)
 
-    flash(f'drive_item_{modification}', 'notification-success')
+    flash(
+        f'drive_item_{modification}' if res else f'drive_item_{modification}_error',
+        'notification-success' if res else 'notification-danger'
+    )
     return redirect(url_for('drive.storage', name=name, path=path))
