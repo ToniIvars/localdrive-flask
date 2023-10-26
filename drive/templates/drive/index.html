@@ -20,7 +20,7 @@
     class="container px-0 d-flex flex-wrap justify-content-center justify-content-sm-start column-gap-5 row-gap-2">
     <div
       class="drive-element folder container px-0 mx-0 pb-2 position-relative d-flex align-items-center flex-column rounded-3">
-      <a href="{{ url_for('drive.storage', name='shared') }}"
+      <a href="{{ url_for('drive.storage', drive='shared') }}"
         class="text-reset text-decoration-none text-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
           stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -44,7 +44,7 @@
     </div>
     <div
       class="drive-element folder container px-0 mx-0 pb-2 position-relative d-flex align-items-center flex-column rounded-3">
-      <a href="{{ url_for('drive.storage', name='my-drive') }}"
+      <a href="{{ url_for('drive.storage', drive='my-drive') }}"
         class="text-reset text-decoration-none text-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
           stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

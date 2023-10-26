@@ -107,7 +107,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{ url_for('drive.modify', modification='delete', name=url_name, path='/'.join(path)) }}">
+        <form method="post" action="{{ url_for('drive.modify', modification='delete', drive=drive, path='/'.join(path)) }}">
           <input type="hidden" name="item-name" value="">
           <p>
             <span data-translate="delete_item_desc"></span>
@@ -153,7 +153,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{ url_for('drive.modify', modification='rename', name=url_name, path='/'.join(path)) }}">
+        <form method="post" action="{{ url_for('drive.modify', modification='rename', drive=drive, path='/'.join(path)) }}">
           <input type="hidden" name="item-name" value="">
           <div class="mb-3">
             <label for="new-name" class="form-label">

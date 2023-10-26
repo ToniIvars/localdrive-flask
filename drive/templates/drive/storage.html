@@ -22,7 +22,7 @@
       <li {% if path %} class="breadcrumb-item" {% else %} class="breadcrumb-item active" aria-current="page" {% endif
         %}>
         {% if path %}
-        <a class="text-decoration-none" href="{{ url_for('drive.storage', name=url_name) }}"
+        <a class="text-decoration-none" href="{{ url_for('drive.storage', drive=drive) }}"
           data-translate="{{ translate }}"></a>
         {% else %}
         <span data-translate="{{ translate }}"></span>
@@ -31,7 +31,7 @@
       {% if path %}
       {% for p in path[:-1] %}
       <li class="breadcrumb-item"><a class="text-decoration-none"
-          href="{{ url_for('drive.storage', name=url_name, path='/'.join(path[:loop.index])) }}">{{ p }}</a></li>
+          href="{{ url_for('drive.storage', drive=drive, path='/'.join(path[:loop.index])) }}">{{ p }}</a></li>
       {% endfor %}
       <li class="breadcrumb-item active" aria-current="page">{{ path[-1] }}</li>
       {% endif %}
@@ -72,7 +72,7 @@
       <div
         class="drive-element {{ c.type }} container px-0 mx-0 pb-2 position-relative d-flex align-items-center flex-column rounded-3">
         {% if c.type == 'folder' %}
-        <a href="{{ url_for('drive.storage', name=url_name, path='/'.join(path + [c.name])) }}"
+        <a href="{{ url_for('drive.storage', drive=drive, path='/'.join(path + [c.name])) }}"
           class="text-reset text-decoration-none text-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" stroke-width="2"
             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -108,7 +108,7 @@
         <div class="dropdown" data-item-name="{{ c.name }}">
           <ul class="dropdown-menu">
             <li><a class="dropdown-item d-flex align-items-center column-gap-1"
-                href="{{ url_for('drive.duplicate', name=url_name, path='/'.join(path + [c.name])) }}">
+                href="{{ url_for('drive.duplicate', drive=drive, path='/'.join(path + [c.name])) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                   stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

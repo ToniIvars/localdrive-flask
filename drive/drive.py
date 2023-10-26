@@ -12,12 +12,12 @@ drive = Blueprint('drive', __name__)
 def index():
     return render_template('drive/index.html')
 
-@drive.route('/<name>/', defaults={'path': ''})
-@drive.route('/<name>/<path:path>/')
+@drive.route('/<drive>/', defaults={'path': ''})
+@drive.route('/<drive>/<path:path>/')
 @login_required
 @check_drive
-def storage(name, path):
-    base_path = 'shared' if name == 'shared' else str(current_user.uuid)
+def storage(drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
 
     content = file_handling.list_dir(base_path, path)
 
@@ -26,14 +26,14 @@ def storage(name, path):
         return redirect(url_for('drive.index'))
     
     path = [p for p in path.split('/') if p != '']
-    return render_template('drive/storage.html', translate=f'drive_{name.replace("-", "")}', url_name=name, path=path, content=content)
+    return render_template('drive/storage.html', translate=f'drive_{drive.replace("-", "")}', drive=drive, path=path, content=content)
 
-@drive.route('/<name>/', defaults={'path': ''}, methods=['POST'])
-@drive.route('/<name>/<path:path>/', methods=['POST'])
+@drive.route('/<drive>/', defaults={'path': ''}, methods=['POST'])
+@drive.route('/<drive>/<path:path>/', methods=['POST'])
 @login_required
 @check_drive
-def storage_post(name, path):
-    base_path = 'shared' if name == 'shared' else str(current_user.uuid)
+def storage_post(drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
 
     if request.form.get('modal') == 'upload':
         files = request.files.getlist('upload-file')
@@ -54,12 +54,12 @@ def storage_post(name, path):
     
     return redirect(request.url)
 
-@drive.route('/<modification>/<name>/', defaults={'path': ''}, methods=['POST'])
-@drive.route('/<modification>/<name>/<path:path>/', methods=['POST'])
+@drive.route('/<modification>/<drive>/', defaults={'path': ''}, methods=['POST'])
+@drive.route('/<modification>/<drive>/<path:path>/', methods=['POST'])
 @login_required
 @check_drive
-def modify(modification, name, path):
-    base_path = 'shared' if name == 'shared' else str(current_user.uuid)
+def modify(modification, drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
 
     if modification == 'delete':
         item_name = request.form.get('item-name')
@@ -71,19 +71,19 @@ def modify(modification, name, path):
         res = file_handling.rename(base_path, path, item_name, new_name)
 
     else:
-        return redirect(url_for('drive.storage', name=name, path=path))
+        return redirect(url_for('drive.storage', drive=drive, path=path))
 
     flash(
         f'drive_item_{modification}' if res else f'drive_item_{modification}_error',
         'notification-success' if res else 'notification-danger'
     )
-    return redirect(url_for('drive.storage', name=name, path=path))
+    return redirect(url_for('drive.storage', drive=drive, path=path))
 
-@drive.route('/duplicate/<name>/<path:path>/')
+@drive.route('/duplicate/<drive>/<path:path>/')
 @login_required
 @check_drive
-def duplicate(name, path):
-    base_path = 'shared' if name == 'shared' else str(current_user.uuid)
+def duplicate(drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
 
     path = path.split('/')
     path, item_name = '/'.join(path[:-1]), path[-1]
@@ -91,4 +91,4 @@ def duplicate(name, path):
     file_handling.duplicate(base_path, path, item_name)
 
     flash('drive_item_duplication', 'notification-success')
-    return redirect(url_for('drive.storage', name=name, path=path))
+    return redirect(url_for('drive.storage', drive=drive, path=path))
