@@ -1,5 +1,5 @@
+import shutil
 from pathlib import Path
-from shutil import rmtree, copy2, copytree
 from uuid import UUID
 
 from .config import config
@@ -46,7 +46,7 @@ def delete(base_path: str, path: str, name: str) -> bool:
         return False
     
     if item_path.is_dir():
-        rmtree(item_path)
+        shutil.rmtree(item_path)
 
     else:
         item_path.unlink()
@@ -73,8 +73,27 @@ def duplicate(base_path: str, path: str, name: str) -> None:
     while True:
         duplicate_name = directory / f'{name} ({i})'
         if not duplicate_name.exists():
-            copy_func = copytree if item_name.is_dir() else copy2
+            copy_func = shutil.copytree if item_name.is_dir() else shutil.copy2
             copy_func(item_name, duplicate_name)
             return
         
         i += 1
+
+def move(base_path: str, path: str, name: str, destination_folder: str, uuid: str) -> bool:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    
+    item_name = directory / name
+    if destination_folder == 'shared':
+        dest_path = Path(config.localdrive_storage_path) / 'shared' / name
+    
+    elif destination_folder == 'my-drive':
+        dest_path = Path(config.localdrive_storage_path) / uuid / name
+
+    else:
+        dest_path = directory / destination_folder / name
+
+    if not dest_path.parent.exists() or dest_path.exists():
+        return False
+    
+    shutil.move(item_name, dest_path)
+    return True

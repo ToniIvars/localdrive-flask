@@ -13,12 +13,18 @@ const translations = {
     drive_item_delete_error: "The item could not be deleted",
     drive_item_rename_error: "The item could not be renamed",
     drive_item_duplication: "The item has been duplicated successfully",
+    drive_item_move: "The item has been moved successfully",
+    drive_item_move_error: "The item could not be moved",
+    drive_item_move_same_folder: "You cannot move a folder to itself!",
     upload_file_btn: "Upload files",
     upload_file_title: "Upload some new files",
     upload_file_desc: "Choose the files you want to upload:",
     new_folder_btn: "New folder",
     new_folder_title: "Create a new folder",
     new_folder_desc: "Name of the folder you want to create:",
+    move_item_btn: "Move",
+    move_item_title: "Move item",
+    move_item_desc: "Where do you want to move",
     duplicate_item_btn: "Duplicate",
     delete_item_btn: "Delete",
     delete_item_title: "Delete item",
@@ -43,7 +49,8 @@ const translations = {
     alert_username_in_use: "Username already in use",
     alert_password_mismatch: "Passwords do not match",
     notification_login_success: "You have logged in successfully!",
-    notification_signup_success: "You have signed up successfully!"
+    notification_signup_success: "You have signed up successfully!",
+    parent: "Parent"
   },
   es: {
     lang: "Idioma",
@@ -59,12 +66,18 @@ const translations = {
     drive_item_delete_error: "No se ha podido eliminar el elemento",
     drive_item_rename_error: "No se ha podido renombrar el elemento",
     drive_item_duplication: "El elemento se ha duplicado correctamente",
+    drive_item_move: "El elemento se ha movido correctamente",
+    drive_item_move_error: "No se ha podido mover el elemento",
+    drive_item_move_same_folder: "No puedes mover una carpeta a ella misma!",
     upload_file_btn: "Subir archivos",
     upload_file_title: "Sube nuevos archivos",
     upload_file_desc: "Elige los archivos que quieres subir:",
     new_folder_btn: "Nueva carpeta",
     new_folder_title: "Crea una nueva carpeta",
     new_folder_desc: "Nombre de la carpeta que quieres crear:",
+    move_item_btn: "Mover",
+    move_item_title: "Mover elemento",
+    move_item_desc: "¿Dónde quieres mover",
     duplicate_item_btn: "Duplicar",
     delete_item_btn: "Eliminar",
     delete_item_title: "Eliminar elemento",
@@ -89,7 +102,8 @@ const translations = {
     alert_username_in_use: "El nombre de usuario ya está en uso",
     alert_password_mismatch: "Las contraseñas introducidas son diferentes",
     notification_login_success: "Has iniciado sesión correctamente!",
-    notification_signup_success: "Te has registrado correctamente!"
+    notification_signup_success: "Te has registrado correctamente!",
+    parent: "Carpeta superior"
   }
 }
 

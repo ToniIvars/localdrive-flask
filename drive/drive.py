@@ -100,3 +100,28 @@ def duplicate(drive, path):
 
     flash('drive_item_duplication', 'notification-success')
     return redirect(url_for('drive.storage', drive=drive, path=path))
+
+@drive.route('/move/<drive>/', defaults={'path': ''}, methods=['POST'])
+@drive.route('/move/<drive>/<path:path>/', methods=['POST'])
+@login_required
+@check_drive
+def move(drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
+
+    item_name = request.form.get('item-name')
+    destination_folder = request.form.get('destination-folder')
+
+    if item_name == destination_folder:
+        flash('drive_item_move_same_folder', 'notification-danger')
+    
+    else:
+        if destination_folder == '__parent__':
+            destination_folder = '../'
+        
+        res = file_handling.move(base_path, path, item_name, destination_folder, str(current_user.uuid))
+        flash(
+            'drive_item_move' if res else 'drive_item_move_error',
+            'notification-success' if res else 'notification-danger'
+        )
+
+    return redirect(url_for('drive.storage', drive=drive, path=path))

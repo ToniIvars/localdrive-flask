@@ -3,6 +3,19 @@
   transition: background-color 200ms ease-in-out;
 }
 
+.drive-element-modal {
+  width: 108px;
+  transition: background-color 200ms ease-in-out;
+}
+
+.drive-element-modal:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+.btn-check:checked + label {
+  background-color: var(--bs-secondary-bg) !important;
+}
+
 .drive-menu {
   opacity: 0;
   background-color: var(--bs-secondary-bg);
