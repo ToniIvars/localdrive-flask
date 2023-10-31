@@ -21,6 +21,15 @@
   background-color: var(--bs-tertiary-bg);
 }
 
+.drive-element .element-icon {
+  fill: var(--bs-body-bg);
+  transition: fill 200ms ease-in-out;
+}
+
+.drive-element:hover .element-icon {
+  fill: var( --bs-body-color);
+}
+
 .auth-container {
   width: min(600px, 90%);
 }
