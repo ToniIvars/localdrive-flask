@@ -1,0 +1,14 @@
+services:
+  localdrive:
+    build: .
+    container_name: localdrive-docker
+    volumes:
+      - /home/toni/localdrive/storage:/storage
+      - /home/toni/localdrive/instance:/localdrive/instance
+    ports:
+      - 80:5000
+    environment:
+      - LOCALDRIVE_SECRET_KEY=db8081c8aa7790949026ebb004d04efb
+      - LOCALDRIVE_SQLALCHEMY_DATABASE_URI=sqlite:///db.sqlite
+      - LOCALDRIVE_STORAGE_PATH=/storage
+    restart: unless-stopped

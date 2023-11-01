@@ -1,0 +1,8 @@
+Dockerfile
+.dockerignore
+*.log
+*env/
+*.git*
+LICENSE
+*.env
+*instance
