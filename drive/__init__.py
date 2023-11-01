@@ -7,7 +7,6 @@ from .models import db, User
 def create_app():
     app = Flask(__name__)
     app.config.update(config.to_flask_config())
-    app.config['USE_X_SENDFILE'] = True
 
     db.init_app(app)
     with app.app_context():
