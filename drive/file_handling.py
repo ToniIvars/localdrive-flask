@@ -1,6 +1,9 @@
+import os
 import shutil
+from io import BytesIO
 from pathlib import Path
 from uuid import UUID
+from zipfile import ZipFile
 
 from .config import config
 
@@ -97,3 +100,26 @@ def move(base_path: str, path: str, name: str, destination_folder: str, uuid: st
     
     shutil.move(item_name, dest_path)
     return True
+
+def zip_dir(path: Path) -> BytesIO:
+    zip_file = BytesIO()
+
+    with ZipFile(zip_file, 'w') as buffer:
+        for root, _, files in os.walk(path):
+            for f in files:
+                buffer.write(os.path.join(root, f), arcname=f'{root.replace(str(path), path.name)}/{f}')
+    
+    zip_file.seek(0)
+    return zip_file
+
+def download(base_path: str, path: str, name: str) -> tuple[str | BytesIO, str] | None:
+    directory = Path(config.localdrive_storage_path) / base_path / path
+    item_name = directory / name
+
+    if not item_name.exists():
+        return
+    
+    if item_name.is_file():
+        return item_name, name
+    
+    return zip_dir(item_name), f'{name}.zip'

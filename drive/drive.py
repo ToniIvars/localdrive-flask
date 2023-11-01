@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, redirect, url_for, request
+from flask import Blueprint, flash, render_template, redirect, url_for, request, send_file
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
@@ -125,3 +125,21 @@ def move(drive, path):
         )
 
     return redirect(url_for('drive.storage', drive=drive, path=path))
+
+@drive.route('/download/<drive>', defaults={'path': ''})
+@drive.route('/download/<drive>/<path:path>')
+@login_required
+@check_drive
+def download(drive, path):
+    base_path = 'shared' if drive == 'shared' else str(current_user.uuid)
+    
+    path = path.strip('/').split('/')
+    path, name = '/'.join(path[:-1]), path[-1]
+
+    res = file_handling.download(base_path, path, name)
+    if res is None:
+        flash('drive_item_download', 'notification-danger')
+        return redirect(url_for('drive.storage', drive=drive, path=path))
+
+    resp_file, download_name = res
+    return send_file(resp_file, download_name=download_name)
